@@ -1,10 +1,14 @@
 package com.example;
 
+import java.io.File;
+import org.deeplearning4j.*;
+import org.deeplearning4j.models.word2vec.Word2Vec;
+import org.nd4j.*;
 // for now in fully implemented method input comes from frontend input!
 import java.util.Scanner;
 
 // basic: input = some input query
-// output: rating of closeness to defaults and return value of closest or return error if all 0%
+// output: similarity
 public class Search{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -46,5 +50,13 @@ class Query{
     // determines query existence in searchParams using recursive search
     public Boolean isEqual(){
         return recarrSearch(searchParams, 0, (searchParams.length-1), this.q);
+    }
+    //
+    public void rank(){
+        Word2Vec vec = new Word2Vec.Builder().minWordFrequency(5).build();
+        vec.fit();
+        for(var i = 0; i < searchParams.length; i++){
+            System.out.println("Similarity of "+this.q+" to "+ searchParams[i] + ": "+ vec.similarirty(this.q, searchParams[i]));
+        }
     }
 }

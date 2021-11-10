@@ -1,7 +1,7 @@
-# UBC-Design-League-Repo
+# UBC Design League Repo (DB)
 
 ## Description
-This is UBC Design Leagues' Database / Repository. Still under construction!
+This is UBC Design Leagues' Database / Repository.
 
 ## Techstack
 Springboot, Java, MySQL, FrontEnd. 
