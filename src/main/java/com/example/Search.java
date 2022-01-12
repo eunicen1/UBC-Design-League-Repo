@@ -1,9 +1,6 @@
 package com.example;
 
-import java.io.File;
-import org.deeplearning4j.*;
 import org.deeplearning4j.models.word2vec.Word2Vec;
-import org.nd4j.*;
 // for now in fully implemented method input comes from frontend input!
 import java.util.Scanner;
 
@@ -55,8 +52,8 @@ class Query{
     public void rank(){
         Word2Vec vec = new Word2Vec.Builder().minWordFrequency(5).build();
         vec.fit();
-        for(var i = 0; i < searchParams.length; i++){
-            System.out.println("Similarity of "+this.q+" to "+ searchParams[i] + ": "+ vec.similarirty(this.q, searchParams[i]));
+        for(int i = 0; i < searchParams.length; i++){
+            System.out.println("Similarity of "+this.q+" to "+ searchParams[i] + ": "+ vec.similarity(this.q, searchParams[i]));
         }
     }
 }
