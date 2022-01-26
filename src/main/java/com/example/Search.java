@@ -1,6 +1,9 @@
 package com.example;
 
-import org.deeplearning4j.models.word2vec.Word2Vec;
+import net.ricecode.similarity.SimilarityStrategy;
+import net.ricecode.similarity.JaroWinklerStrategy;
+import net.ricecode.similarity.StringSimilarityService;
+import net.ricecode.similarity.StringSimilarityServiceImpl;
 // for now in fully implemented method input comes from frontend input!
 import java.util.Scanner;
 
@@ -13,6 +16,7 @@ public class Search{
         Query search = new Query(sc.next());
         System.out.println("your query: "+search.getQuery());
         System.out.println("in list: "+search.isEqual());
+        search.rank();
         sc.close();
     }
 }
@@ -24,7 +28,13 @@ class Query{
         "banana", 
         "cherry", 
         "orange", 
-        "mango"
+        "mango",
+        "shoe",
+        "school",
+        "canada",
+        "canadian cherry", 
+        "solid works autocad",
+        "school is really cool"
     };
     // is query a default searchParams?
     Boolean recarrSearch(String[] arr, int beg, int end, String toFind){
@@ -50,10 +60,11 @@ class Query{
     }
     //
     public void rank(){
-        Word2Vec vec = new Word2Vec.Builder().minWordFrequency(5).build();
-        vec.fit();
         for(int i = 0; i < searchParams.length; i++){
-            System.out.println("Similarity of "+this.q+" to "+ searchParams[i] + ": "+ vec.similarity(this.q, searchParams[i]));
+            SimilarityStrategy strategy = new JaroWinklerStrategy();
+            StringSimilarityService service = new StringSimilarityServiceImpl(strategy);
+            double score = service.score(this.q, searchParams[i]); // Score is 0.90
+            System.out.println("Similarity of "+ this.q +" to "+ searchParams[i] + ": "+ score);
         }
     }
 }

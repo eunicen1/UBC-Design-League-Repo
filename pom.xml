@@ -61,10 +61,16 @@
             <version>2.6.2</version>
         </dependency>
         <dependency>
+            <groupId>net.ricecode</groupId>
+            <artifactId>string-similarity</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+       <!-- <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-nlp</artifactId>
             <version>1.0.0-M1.1</version>
-        </dependency>
+        </dependency> 
+        -->
         <!--
         <dependency>
             <groupId>org.deeplearning4j</groupId>
