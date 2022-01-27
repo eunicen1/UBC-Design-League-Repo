@@ -23,6 +23,7 @@ public class Search{
 class Query{
     String q;
     // to be replaced with compiled database
+    // a possible solution to the fact that apple and 
     String[] searchParams = {
         "apple", 
         "banana", 
@@ -63,7 +64,7 @@ class Query{
         for(int i = 0; i < searchParams.length; i++){
             SimilarityStrategy strategy = new JaroWinklerStrategy();
             StringSimilarityService service = new StringSimilarityServiceImpl(strategy);
-            double score = service.score(this.q, searchParams[i]); // Score is 0.90
+            double score = service.score(this.q, searchParams[i]); 
             System.out.println("Similarity of "+ this.q +" to "+ searchParams[i] + ": "+ score);
         }
     }
